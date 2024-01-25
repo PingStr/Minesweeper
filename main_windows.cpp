@@ -10,6 +10,11 @@ int di[] = {1, 0, 0, -1, 1, 1, -1, -1}, dj[] = {0, 1, -1, 0, 1, -1, 1, -1};
 int cnt = 5;
 int k = 0;
 
+/*
+    8 - spatiu gol;
+    6 - bomba;
+*/
+
 void afis()
 {
     for (int i = 0; i <= n; i++)
