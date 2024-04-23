@@ -45,11 +45,9 @@ void afis3()
 void ran(int cnt)
 {
     int x, y;
-    int g = 0;
     srand(time(NULL));
     for (int i = 1; i <= cnt; i++)
     {
-        g = 0;
         x = rand() % n + 1;
         y = rand() % n + 1;
         if (a[x][y] == 6)
@@ -60,14 +58,8 @@ void ran(int cnt)
                 y = rand() % n + 1;
             }
             a[x][y] = 6;
-            g = 1;
         }
         else
-        {
-            a[x][y] = 6;
-            g = 1;
-        }
-        if (g == 0)
         {
             a[x][y] = 6;
         }
