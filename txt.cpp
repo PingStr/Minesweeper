@@ -16,27 +16,45 @@ int k = 0;
 */
 void afis2()
 {
+    cout<<"Nr Bombe: "<<cnt<<"\t"<<"Marcate: "<<k<<"\n\n";
     cout<<" ";
     for (int i = 0; i <= n; i++)
     {
         for (int j = 0; j <= n; j++)
         {
-            cout<<b[i][j]<<" ";
+            if (i == 0 && j == 0)
+                cout<<" |";
+            else if(i == 0 && j > 9)
+                cout<<j<<"|";
+            else if(j == 0 && i > 9)
+                cout<<i<<"|";
+            else
+                cout<<b[i][j]<<" |";
         }
         cout<<"\n";
     }
 }
 void afis3()
 {
+    cout<<"Nr Bombe: "<<cnt<<"\t"<<"Marcate: "<<k<<"\n\n";
     cout<<" ";
     for (int i = 0; i <= n; i++)
     {
         for (int j = 0; j <= n; j++)
         {
             if(a[i][j] == 6)
-                cout<<"*"<<" ";
+                cout<<"*"<<" |";
             else
-                cout<<b[i][j]<<" ";
+            {
+                if (i == 0 && j == 0)
+                cout<<" |";
+                else if(i == 0 && j > 9)
+                    cout<<j<<"|";
+                else if(j == 0 && i > 9)
+                    cout<<i<<"|";
+                else
+                    cout<<b[i][j]<<" |";
+            }
         }
         cout<<"\n";
     }
@@ -71,7 +89,7 @@ bool inmat(int i, int j)
     return i > 0 && j > 0 && i <= n && j <= n;
 }
 
-void bagabom()
+void inBomb()
 {
     int c;
     for (int i = 1; i <= n; i++)
@@ -145,7 +163,7 @@ void check_bombs(bool &chh)
     }
 }
 
-bool game(int i, int j, int c, bool &chh, int &k)
+bool game(int i, int j, int c, bool &chh)
 {
     if (c == 1)
     {
@@ -199,14 +217,18 @@ void citire(int &i, int &j, int &c)
     cout<<"o = ";
     cin>>c;
 }
-
-int main()
+void citirein()
 {
     cout<<"Introduceti numarul de bombe: ";
     cin>>cnt;
     cout<<"Introduceti dimensiunea campului de joc: ";
     cin>>n;
     system("cls");
+}
+
+int main()
+{
+    citirein();
     for (int i = 1; i <= n; i++)
     {
         b[0][i] = '0' + i;
@@ -220,12 +242,12 @@ int main()
         }
     }
     ran(cnt);
-    bagabom();
+    inBomb();
     int i, j, c;
     bool check = 0;
 
     int k = 0;
-    while (game(i, j, c, check, k))
+    while (game(i, j, c, check))
     {
         afis2();
         citire(i, j, c);
@@ -241,7 +263,8 @@ int main()
     {
         system("cls");
         afis3();
-        cout<<"GAME OVER";
+        cout<<"GAME OVER\n";
+        cin>>n;
     }
     return 0;
 }
